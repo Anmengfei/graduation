@@ -1,0 +1,13 @@
+<view class="pyg_index">
+ 
+  <view class="biaoti">
+    <text class="tishi">生成你的独家记忆</text>
+    <navigator >
+      <image mode="widthFix" src="../../icons/zhizuo.jpg" />
+    </navigator>
+  </view>
+
+  
+
+ 
+</view>
