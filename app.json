@@ -1,0 +1,28 @@
+{
+  "pages": [ 
+    "pages/index/index"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#42b473",
+    "navigationBarTitleText": "毕业合照",
+    "navigationBarTextStyle": "white"
+  },
+  
+  
+    
+  "sitemapLocation": "sitemap.json"
+}
+
+
+
+
+
+
+
+
+
+
+
+
