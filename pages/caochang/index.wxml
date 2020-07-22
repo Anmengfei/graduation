@@ -1,0 +1,9 @@
+<view class="pyg_index">
+ 
+  <view class="biaoti">
+    <text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>
+    <image style="width: 80px;height:80px;" class="touxiang" mode="widthFix" src="{{img}}" wx:if="{{showTouxiang}}" />
+    <image class="xiaofu" mode="widthFix" src="../../icons/xiaofu.jpg" />
+  </view>
+ 
+</view>
