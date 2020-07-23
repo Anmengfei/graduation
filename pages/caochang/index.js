@@ -3,8 +3,12 @@ import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
-    img: '../../icons/test.jpg',
-    showTouxiang: false
+    img: '../../icons/xiaofu1.jpg',
+    showTouxiang: false,
+    showSelect: false,
+    opacity: 0,
+    imgList: ['../../icons/xiaofu1.jpg', '../../icons/xiaofu2.png', '../../icons/xiaofu3.jpg', '../../icons/xiaofu4.jpg', '../../icons/xiaofu5.jpg', '../../icons/xiaofu6.png', '../../icons/xiaofu7.jpg', '../../icons/xiaofu8.png']
+    // display: none
   },
   
 
@@ -48,8 +52,35 @@ Page({
       }
     })
  
+  },
+  goBack: function(){
+    wx.navigateBack({
+        delta: 1
+    })
+  },
+  cancelSelect: function() {
+    this.setData({
+      showSelect: false,
+    })
+  },
+  gotoSelect: function(e) {
+    this.setData({
+      showSelect: true,
+      opacity: 1,
+      // display: block
+    })
+    console.log(e)
+    console.log('test', this.showSelect)
+  },
+  handleImg: function(e) {
+    const that = this
+    // console.log(222, e)
+    // console.log(this.imgList[2])
+    this.setData({
+      img: e.target.dataset.item,
+      showSelect: false
+    })
   }
-
 
 
   

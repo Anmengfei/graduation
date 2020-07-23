@@ -1,9 +1,27 @@
 <view class="pyg_index">
- 
+  <view class="title">
+    <text class="title_item" bindtap="gotoSelect">选择动作</text>
+    <text class="title_item">添加书院兽</text>
+  </view>
   <view class="biaoti">
     <text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>
     <image style="width: 80px;height:80px;" class="touxiang" mode="widthFix" src="{{img}}" wx:if="{{showTouxiang}}" />
-    <image class="xiaofu" mode="widthFix" src="../../icons/xiaofu.jpg" />
+    <image class="xiaofu" mode="widthFix" src="{{img}}" />
   </view>
- 
+  <view class="footer">
+    <text class="title_item" bindtap="goBack">返回</text>
+    <text class="title_item">下一步</text>
+  </view>
+  <view class="select_content" wx:if="{{showSelect}}">
+    <view class="select_mask" style="opacity:{{opacity}};" bindtap="cancelSelect"></view>
+    <view class="select_info" style="opacity:{{opacity}};">
+    <scroll-view scroll-y="true" style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      
+      <view wx:for="{{imgList}}" wx:key="*this" class="img_item">
+        <image src="{{item}}" bindtap="handleImg" data-item="{{item}}" mode='heightFix' />
+      </view>
+    </scroll-view>
+    </view>
+  
+  </view>
 </view>
