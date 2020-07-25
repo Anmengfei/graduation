@@ -3,11 +3,11 @@ import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
-    img: '../../icons/xiaofu1.jpg',
+    img: '../../icons/xiaofu1.png',
     showTouxiang: false,
     showSelect: false,
     opacity: 0,
-    imgList: ['../../icons/xiaofu1.jpg', '../../icons/xiaofu2.png', '../../icons/xiaofu3.jpg', '../../icons/xiaofu4.jpg', '../../icons/xiaofu5.jpg', '../../icons/xiaofu6.png', '../../icons/xiaofu7.jpg', '../../icons/xiaofu8.png']
+    imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png']
     // display: none
   },
   
