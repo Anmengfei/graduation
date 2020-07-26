@@ -3,11 +3,16 @@ import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
+    touxiang: '',
     img: '../../icons/xiaofu1.png',
+    backImg: '../../icons/fengjing1.jpg',
     showTouxiang: false,
     showSelect: false,
+    showSelectFengjing: false,
     opacity: 0,
-    imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png']
+    imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png'],
+
+    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing6.jpg' ,'../../icons/fengjing7.jpg']
     // display: none
   },
   
@@ -31,7 +36,7 @@ Page({
         that.setData({
      // tempFilePath可以作为img标签的src属性显示图片
           showTouxiang: true,
-          img: res.tempFilePaths[0],
+          touxiang: res.tempFilePaths[0],
         })
       }
     })
@@ -63,6 +68,11 @@ Page({
       showSelect: false,
     })
   },
+  cancelSelectFengjing: function() {
+    this.setData({
+      showSelectFengjing: false,
+    })
+  },
   gotoSelect: function(e) {
     this.setData({
       showSelect: true,
@@ -72,6 +82,15 @@ Page({
     console.log(e)
     console.log('test', this.showSelect)
   },
+  gotoSelectFengjing: function(e) {
+    this.setData({
+      showSelectFengjing: true,
+      opacity: 1,
+      // display: block
+    })
+    console.log(e)
+    console.log('test', this.showSelectFengjing)
+  },
   handleImg: function(e) {
     const that = this
     // console.log(222, e)
@@ -79,6 +98,15 @@ Page({
     this.setData({
       img: e.target.dataset.item,
       showSelect: false
+    })
+  },
+  handleBackImg: function(e) {
+    const that = this
+    // console.log(222, e)
+    // console.log(this.imgList[2])
+    this.setData({
+      backImg: e.target.dataset.item,
+      showSelectFengjing: false
     })
   }
 
