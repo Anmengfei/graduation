@@ -1,0 +1,109 @@
+.pyg_index {
+  margin-top: 10%;
+  margin-left: 10%;
+  width: 80%;
+  height: 70%;
+  background-size: 100% 100%;
+  position: fixed;
+  background-repeat: no-repeat;
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.5);
+}
+.pyg_index .content {
+  position: absolute;
+  font-size: 15px;
+  background-color: #fff;
+  height: 50px;
+  margin: 15px 10%;
+  padding: 5px;
+  text-align: center;
+  border-radius: 15px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pyg_index .title {
+  font-size: 16px;
+  background-color: #fff;
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
+.pyg_index .title .title_item {
+  flex: 1;
+  text-align: center;
+}
+.pyg_index .biaoti {
+  margin-top: 60%;
+  margin-left: 50%;
+  text-align: center;
+}
+.pyg_index .biaoti text {
+  display: block;
+  font-size: 80px;
+  color: white;
+  margin-left: 5px;
+}
+.pyg_index .biaoti .touxiang {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin-bottom: -5px;
+  margin-left: 55px;
+  border-radius: 50%;
+}
+.pyg_index .biaoti .xiaofu {
+  display: block;
+  margin-top: -55px;
+}
+.pyg_index .select_content {
+  transition: opacity 400ms;
+}
+.pyg_index .select_content .select_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 400ms;
+}
+.pyg_index .select_content .select_info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  padding: 0 10px;
+  background-color: #fff;
+  transition: opacity 400ms;
+  display: table-cell;
+  vertical-align: middle;
+}
+.pyg_index .select_content .img_item {
+  height: 200px;
+  margin-top: 15px;
+  border-radius: 15rpx;
+  text-align: center;
+}
+.pyg_index .select_content .img_item image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15rpx;
+}
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  font-size: 16px;
+  background-color: #fff;
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
+.footer .title_item {
+  flex: 1;
+  text-align: center;
+}

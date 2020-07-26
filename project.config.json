@@ -69,6 +69,12 @@
 					"name": "pages/caochang/index",
 					"pathName": "pages/caochang/index",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/daochu/index",
+					"pathName": "pages/daochu/index",
+					"scene": null
 				}
 			]
 		}

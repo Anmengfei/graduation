@@ -12,8 +12,13 @@ Page({
     opacity: 0,
     imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png'],
 
-    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing6.jpg' ,'../../icons/fengjing7.jpg']
-    // display: none
+    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing6.jpg' ,'../../icons/fengjing7.jpg'],
+    // display: none,
+    dialogShow: false,
+    showOneButtonDialog: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
+    oneButton: [{text: '确定'}],
+    content: ''
   },
   
 
@@ -93,8 +98,6 @@ Page({
   },
   handleImg: function(e) {
     const that = this
-    // console.log(222, e)
-    // console.log(this.imgList[2])
     this.setData({
       img: e.target.dataset.item,
       showSelect: false
@@ -102,14 +105,66 @@ Page({
   },
   handleBackImg: function(e) {
     const that = this
-    // console.log(222, e)
-    // console.log(this.imgList[2])
     this.setData({
       backImg: e.target.dataset.item,
       showSelectFengjing: false
     })
+  },
+  // 寄语弹框
+  openConfirm: function () {
+    this.setData({
+        dialogShow: true
+    })
+  },
+  tapDialogButton(e) {
+      this.setData({
+          dialogShow: false,
+          showOneButtonDialog: false
+      })
+  },
+  tapOneDialogButton(e) {
+      this.setData({
+          showOneButtonDialog: true
+      })
+  },
+  onReady: function () {
+    //获得popup组件
+    this.popup = this.selectComponent("#popup");
+  },
+ 
+  showPopup() {
+    this.popup.showPopup();
+  },
+  getContent(e) {
+    this.setData({
+      content: e.detail.content
+    })
+    console.log('传过来的值', e)
+  },
+  //取消事件
+  _error() {
+    console.log('你点击了取消');
+    this.popup.hidePopup();
+  },
+  //确认事件
+  _success(e) {
+    console.log('你点击了确定', this.__data__.backImg);
+    console.log('你点击了确定', this);
+    this.popup.hidePopup();
+    const that = this
+    console.log('你点击了确定2');
+    // wx.setStorage({
+    //   backImg: JSON.stringify(that.backImg),
+    //   touxiang: JSON.stringify(that.touxiang),
+    //   img: JSON.stringify(that.img)
+    // })
+    console.log('你点击了确定3');
+    console.log('/pages/daochu/index?backImg='+ that.__data__.backImg +'&touxiang=' + that.__data__.touxiang +'&img='+ that.__data__.img +'&content='+ that.__data__.content)
+    wx.navigateTo({
+      // url: '/pages/daochu/index'
+      url: '/pages/daochu/index?backImg='+ that.__data__.backImg +'&touxiang=' + that.__data__.touxiang +'&img='+ that.__data__.img +'&content='+ that.__data__.content
+    })
   }
-
 
   
 })

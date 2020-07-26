@@ -1,0 +1,49 @@
+/* component/popup/popup.wxss */
+.wx-popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+}
+.popup-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+ 
+  width: 80%;
+  max-width: 600rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
+  box-sizing: bordre-box;
+  transform: translate(-50%, -50%); 
+  overflow: hidden;
+  background: #fff;
+}
+.wx-popup-title {
+  width: 100%;
+  padding: 20rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+.wx-popup-con {
+  margin: 60rpx 10rpx;
+  text-align: center;
+}
+.wx-popup-btn {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #eee;
+}
+.wx-popup-btn text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 88rpx;
+}
+.wx-popup-btn .btn-ok {
+    color: rgb(35, 168, 242);
+    border-left: 1px solid #eee;
+}

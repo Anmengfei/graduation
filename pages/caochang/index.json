@@ -1,6 +1,8 @@
 {
+  
+  "component": true,
   "usingComponents": {
-   
+    "popup": "/component/popup/popup"
   },
   "navigationBarTitleText": "毕业合照"
 }

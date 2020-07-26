@@ -1,7 +1,8 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/index/index",
-    "pages/caochang/index"
+    "pages/caochang/index",
+    "pages/daochu/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,20 +10,5 @@
     "navigationBarTitleText": "毕业合照",
     "navigationBarTextStyle": "white"
   },
-  
-  
-    
   "sitemapLocation": "sitemap.json"
 }
-
-
-
-
-
-
-
-
-
-
-
-
