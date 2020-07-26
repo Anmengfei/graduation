@@ -1,12 +1,12 @@
-<view class="pyg_index">
+<view class="pyg_index" style="background-image: url({{backImg}})">
   <view class="title">
-    <text class="title_item" bindtap="gotoSelect">选择动作</text>
-    <text class="title_item">添加书院兽</text>
+    <text class="title_item" bindtap="gotoSelect">选择校服</text>
+    <text class="title_item" bindtap="gotoSelectFengjing">选择风景</text>
   </view>
   <view class="biaoti">
     <text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>
-    <image style="width: 80px;height:80px;" class="touxiang" mode="widthFix" src="{{img}}" wx:if="{{showTouxiang}}" />
-    <image class="xiaofu" mode="widthFix" src="{{img}}" />
+    <image style="width: 80px;height:80px;" class="touxiang"  src="{{touxiang}}" wx:if="{{showTouxiang}}" />
+    <image class="xiaofu"  src="{{img}}" />
   </view>
   <view class="footer">
     <text class="title_item" bindtap="goBack">返回</text>
@@ -19,6 +19,19 @@
       
       <view wx:for="{{imgList}}" wx:key="*this" class="img_item">
         <image src="{{item}}" bindtap="handleImg" data-item="{{item}}" mode='heightFix' />
+      </view>
+    </scroll-view>
+    </view>
+  
+  </view>
+
+  <view class="select_content" wx:if="{{showSelectFengjing}}">
+    <view class="select_mask" style="opacity:{{opacity}};" bindtap="cancelSelectFengjing"></view>
+    <view class="select_info" style="opacity:{{opacity}};">
+    <scroll-view scroll-y="true" style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      
+      <view wx:for="{{backImgList}}" wx:key="*this" class="img_item">
+        <image src="{{item}}" bindtap="handleBackImg" data-item="{{item}}" mode='heightFix' />
       </view>
     </scroll-view>
     </view>
