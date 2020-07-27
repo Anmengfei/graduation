@@ -1,5 +1,5 @@
 <!--pages/daochu/index.wxml-->
-<canvas canvas-id='share' style='width:375px;height:580px'  hidden='{{canvasHidden}}'></canvas> 
+<canvas canvas-id='share' style='width:375px;height:580px;'  hidden='{{canvasHidden}}'></canvas> 
 <view class="pyg_index" wx:if="{{backImg}}" style="background-image: url({{backImg}})">
   <view class="content">
     <text>{{content}}</text>

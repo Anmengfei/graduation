@@ -1,6 +1,4 @@
 // 0 引入 用来发送请求的 方法 一定要把路径补全
-import { request } from "../../request/index.js";
-import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
     touxiang: '',
@@ -12,7 +10,7 @@ Page({
     opacity: 0,
     imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png'],
 
-    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing6.jpg' ,'../../icons/fengjing7.jpg'],
+    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing7.jpg'],
     // display: none,
     dialogShow: false,
     showOneButtonDialog: false,

@@ -36,7 +36,7 @@
 }
 .pyg_index .biaoti .xiaofu {
   display: block;
-  margin-top: -55px;
+  margin-top: -110rpx;
 }
 .pyg_index .footer {
   width: 100%;

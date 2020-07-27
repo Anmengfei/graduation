@@ -105,7 +105,7 @@ Page({
 
  
  //这里很重要，主要就是布局
- console.log(222223333)
+    console.log(222223333)
     ctx.drawImage(bgImgPath, 0, 0, 375, 580);
     ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
@@ -126,10 +126,16 @@ Page({
     ctx.draw(false, function() {
       // 3. canvas画布转成图片
       console.log(2456789)
+      // that.setData({
+      //   canvasHidden:false
+      // })
+      console.log("huizhi")
       wx.canvasToTempFilePath({
         canvasId: 'share',
+        
         success: function (res) {
           var tempFilePath = res.tempFilePath;
+          console.log("success")
           console.log(tempFilePath);
           that.setData({
             shareImgSrc: tempFilePath,
