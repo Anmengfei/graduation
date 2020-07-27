@@ -2,15 +2,15 @@
 Page({
   data: {
     touxiang: '',
-    img: '../../icons/xiaofu1.jpg',
-    backImg: '../../icons/fengjing1.jpg',
+    img: 'https://zhongkeruitong.top/aiphoto/xiaofu1.jpg',
+    backImg: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg',
     showTouxiang: false,
     showSelect: false,
     showSelectFengjing: false,
     opacity: 0,
-    imgList: ['../../icons/xiaofu1.jpg', '../../icons/xiaofu2.jpg', '../../icons/xiaofu3.jpg', '../../icons/xiaofu4.jpg'],
+    imgList: ['https://zhongkeruitong.top/aiphoto/xiaofu1.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu2.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu3.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu4.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu5.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu6.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu7.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu8.jpg'],
 
-    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing7.jpg'],
+    backImgList: ['https://zhongkeruitong.top/aiphoto/fengjing1.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing3.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing4.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing7.jpg'],
     // display: none,
     dialogShow: false,
     showOneButtonDialog: false,

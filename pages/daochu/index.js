@@ -7,9 +7,9 @@ Page({
    */
   data: {
     canvasHidden: true,     //设置画板的显示与隐藏，画板不隐藏会影响页面正常显示
-    backImg: '../../icons/fengjing1.jpg',
+    backImg: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg',
     touxiang: '',
-    img: '../../icons/xiaofu1.jpg',
+    img: 'https://zhongkeruitong.top/aiphoto/xiaofu1.jpg',
     canvasHidden: true,     //设置画板的显示与隐藏，画板不隐藏会影响页面正常显示
     wxappName: '页面生成图片',    //小程序名称
     shareImgPath: '',
@@ -34,9 +34,11 @@ Page({
     wx.getImageInfo({
       src: this.data.backImg,
       success: function (res) {
-        // console.log(res)
+        console.log("测试res")
+        console.log(res)
        that.setData({
-         shareImgSrc: '../../' + res.path
+        //  shareImgSrc: 'https://zhongkeruitong.top/aiphoto/' + res.path
+        shareImgSrc:  res.path
        });
       }
     })
@@ -45,7 +47,8 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
-          shareImgPath: '../../' + res.path
+          // shareImgPath: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg' + res.path
+          shareImgPath:  res.path
         });
       }
     })
@@ -115,7 +118,7 @@ Page({
     //ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
     ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
-    ctx.drawImage(that.data.img, 195, 250, 180, 240, 100);
+    ctx.drawImage(that.data.shareImgPath, 195, 250, 180, 240, 100);
     ctx.setFontSize(30)
     ctx.setFillStyle('red')
     ctx.fillText( that.data.content, 100, 100)
