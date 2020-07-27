@@ -9,7 +9,7 @@ Page({
     canvasHidden: true,     //设置画板的显示与隐藏，画板不隐藏会影响页面正常显示
     backImg: '../../icons/fengjing1.jpg',
     touxiang: '',
-    img: '../../icons/xiaofu1.png',
+    img: '../../icons/xiaofu1.jpg',
     canvasHidden: true,     //设置画板的显示与隐藏，画板不隐藏会影响页面正常显示
     wxappName: '页面生成图片',    //小程序名称
     shareImgPath: '',
@@ -94,6 +94,7 @@ Page({
   saveImageToPhotosAlbum: function () {
     console.log('开始保存合影了？')
    var that = this;
+   
     var unit = that.data.screenWidth / 375
     console.log(2222222)
     //2. canvas绘制文字和图片
@@ -103,17 +104,25 @@ Page({
     // var touxiang = that.data.touxiang,
     // var img = that.data.img
 
- 
+    that.setData({
+      canvasHidden:false
+    })
+    console.log("bgImg", bgImgPath)
+    console.log("shareImg", that.data.shareImgPath)
  //这里很重要，主要就是布局
     console.log(222223333)
     ctx.drawImage(bgImgPath, 0, 0, 375, 580);
-    ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
+    //ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
-    ctx.drawImage(that.data.touxiang, 146, 100, 200, 100);
-    ctx.drawImage(that.data.img, 146, 100, 250, 100);
-    ctx.fillText( that.data.content, 50, 241)
-    ctx.setFontSize(13)
-    ctx.setFillStyle('#5e7436')
+    ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
+    ctx.drawImage(that.data.img, 195, 250, 180, 240, 100);
+    ctx.setFontSize(30)
+    ctx.setFillStyle('red')
+    ctx.fillText( that.data.content, 100, 100)
+    // ctx.font = '30px'
+    // ctx.fillStyle= '#5e7436'
+    // ctx.setFontSize(30)
+    // ctx.setFillStyle('#5e7436')
     console.log(2444444)
     ctx.stroke()
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -131,6 +140,7 @@ Page({
       // })
       console.log("huizhi")
       wx.canvasToTempFilePath({
+        
         canvasId: 'share',
         
         success: function (res) {

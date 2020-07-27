@@ -51,7 +51,6 @@
   height: 80px;
   margin-bottom: -5px;
   margin-left: 55px;
-  border-radius: 50%;
 }
 .pyg_index .biaoti .xiaofu {
   display: block;
