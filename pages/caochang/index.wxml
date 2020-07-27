@@ -1,4 +1,4 @@
-<view class="pyg_index" style="background-image: url({{backImg}})">
+<view class="pyg_index" style="background-image: url('{{backImg}}')">
   <view class="title">
     <text class="title_item" bindtap="gotoSelect">选择校服</text>
     <text class="title_item" bindtap="gotoSelectFengjing">选择风景</text>

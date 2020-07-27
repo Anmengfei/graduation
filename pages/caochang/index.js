@@ -2,15 +2,15 @@
 Page({
   data: {
     touxiang: '',
-    img: '../../icons/xiaofu1.png',
+    img: '../../icons/xiaofu1.jpg',
     backImg: '../../icons/fengjing1.jpg',
     showTouxiang: false,
     showSelect: false,
     showSelectFengjing: false,
     opacity: 0,
-    imgList: ['../../icons/xiaofu1.png', '../../icons/xiaofu2.png', '../../icons/xiaofu3.png', '../../icons/xiaofu4.png', '../../icons/xiaofu5.png', '../../icons/xiaofu6.png', '../../icons/xiaofu7.png', '../../icons/xiaofu8.png'],
+    imgList: ['../../icons/xiaofu1.jpg', '../../icons/xiaofu2.jpg', '../../icons/xiaofu3.jpg', '../../icons/xiaofu4.jpg'],
 
-    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing2.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing5.jpg', '../../icons/fengjing7.jpg'],
+    backImgList: ['../../icons/fengjing1.jpg', '../../icons/fengjing3.jpg', '../../icons/fengjing4.jpg', '../../icons/fengjing7.jpg'],
     // display: none,
     dialogShow: false,
     showOneButtonDialog: false,
