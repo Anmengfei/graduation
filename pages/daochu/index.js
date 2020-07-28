@@ -15,7 +15,11 @@ Page({
     shareImgPath: '',
     screenWidth: '',       //设备屏幕宽度
     shareImgSrc: '',
-    content: ''
+    content: '',
+    color: '',
+    sizeList: ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'],
+    // size: 'medium',
+    size: 14
   },
 
   /**
@@ -69,7 +73,31 @@ Page({
         delta: 1
     })
   },
-
+  changeColor: function() { // 修改字体颜色
+    const r = Math.floor(Math.random() * 255)
+    const g = Math.floor(Math.random() * 255)
+    const b = Math.floor(Math.random() * 255)
+    // const color = 'rgba(' + r + ',' + g + ',' + b + ',0.6)'
+    const color = 'rgb(' + r + ',' + g + ',' + b + ')'
+    // const color = this.data.color == "red" ? "green":"red"
+    this.setData({
+      color: color
+    })
+  },
+  changeBig: function() { // 放大
+    const size = this.data.size += 1
+    this.setData({
+      size: size
+    })
+  },
+  changeSmall: function() { // 缩小
+    if (this.data.size > 9) {
+      const size = this.data.size -= 1
+      this.setData({
+        size: size
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -135,7 +163,7 @@ Page({
       duration: 1000
     });
     console.log(5555555555)
-    ctx.draw(false, function() {
+    ctx.draw(true,  (()  => {
       // 3. canvas画布转成图片
       console.log(2456789)
       // that.setData({
@@ -162,7 +190,7 @@ Page({
         }
       })
       console.log('zhuanhaunle')
-    });
+    })());
   },
   /**
    * 生命周期函数--监听页面显示 

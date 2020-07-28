@@ -38,6 +38,7 @@
   
   </view>
 
+  
   <view class="container">
     <popup id='popup' 
         content='{{content}}' 

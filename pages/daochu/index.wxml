@@ -2,8 +2,23 @@
 <canvas canvas-id='share' style='width:375px;height:580px;'  hidden='{{canvasHidden}}'></canvas> 
 <view class="pyg_index" wx:if="{{backImg}}" style="background-image: url({{backImg}})">
   <view class="content">
-    <text>{{content}}</text>
+    <view style="color:{{color}};font-size:{{size}}px;" class="content_detail">
+      <text>{{content}}</text>
+    </view>
+    <view class="btn">
+      <view bindtap="changeColor" class="change_color">
+        改变颜色
+      </view>
+      <view bindtap="changeBig" class="change_color">
+        放大
+      </view>
+      <view bindtap="changeSmall" class="change_color">
+        缩小
+      </view>
+    </view>
+    
   </view>
+  
   <view class="biaoti">
 <!--<text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>-->
     <image style="width: 80px;height:80px;" class="touxiang" wx:if="{{touxiang}}" src="{{touxiang}}"/>

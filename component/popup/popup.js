@@ -31,7 +31,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    flag: true
+    flag: true,
+    array: ['我向前的每一步，都离不开您的指引；我成长的每一厘，都离不开您的呵护', '玉兰花开，陪伴着我们一同聆听老师的谆谆教诲；银杏叶落，承载了我们这三年来多少的笑语欢歌。桃李不言，下自成蹊。母校，祝愿您明天更美好。', '学海无涯，有挚友相伴，一叶小舟也能渡海。风浪与晴好我们一起前进，欢笑与困难我们共同度过。'],
   },
  
   /**
@@ -68,6 +69,13 @@ Component({
       //   inputValue: e.detail.value
       // })
       this.triggerEvent('contentEvent', { content: e.detail.value }); //这里giveFarther就是事件名，后面带着的就是传过去值
+    },
+    bindPickerChange: function(e) {
+      console.log('picker发送选择改变，携带值为', this.data.array[e.detail.value], e.detail.value)
+      this.setData({
+        index: e.detail.value
+      })
+      this.triggerEvent('contentEvent', { content: this.data.array[e.detail.value] }); //这里giveFarther就是事件名，后面带着的就是传过去值
     },
   }
 })

@@ -28,7 +28,7 @@
   font-size: 30rpx;
 }
 .wx-popup-con {
-  margin: 60rpx 10rpx;
+  margin: 50rpx 10rpx;
   text-align: center;
 }
 .wx-popup-btn {
@@ -46,4 +46,7 @@
 .wx-popup-btn .btn-ok {
     color: rgb(35, 168, 242);
     border-left: 1px solid #eee;
+}
+.popup-container .picker {
+  line-height: 25px;
 }
