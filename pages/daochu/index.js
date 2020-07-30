@@ -16,10 +16,11 @@ Page({
     screenWidth: '',       //设备屏幕宽度
     shareImgSrc: '',
     content: '',
-    color: '',
+    color: 'black',
     sizeList: ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'],
     // size: 'medium',
-    size: 14
+    size: 14,
+    noshow: true
   },
 
   /**
@@ -98,6 +99,24 @@ Page({
       })
     }
   },
+  getList(str) {
+    var i = 0;
+    var list = [];
+    while (i < str.length) {
+      var str1 = "";
+
+      for (var j = i; j < i + 20; j++) {
+        if (j < str.length) {
+          str1 = str1 + str[j];
+        }
+      }
+      list.push(str1);
+      i = i + 20;
+    }
+    console.log(list);
+    return list
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -122,7 +141,7 @@ Page({
   //   })
   // },
   //保存至相册
-  saveImageToPhotosAlbum: function () {
+  saveImageToPhotosAlbum1: function () {
     console.log('开始保存合影了？')
    var that = this;
    
@@ -131,9 +150,7 @@ Page({
     //2. canvas绘制文字和图片
     const ctx = wx.createCanvasContext('share');
     var bgImgPath = that.data.shareImgSrc;
-    // var backImg = that.data.backImg,     //id是a页面传递过来的名称，a_id是保存在本页面的全局变量   {{b_id}}方法使用
-    // var touxiang = that.data.touxiang,
-    // var img = that.data.img
+   
 
     that.setData({
       canvasHidden:false
@@ -147,13 +164,21 @@ Page({
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
     ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
     ctx.drawImage(that.data.shareImgPath, 195, 250, 180, 240, 100);
-    ctx.setFontSize(30)
-    ctx.setFillStyle('red')
-    ctx.fillText( that.data.content, 100, 100)
-    // ctx.font = '30px'
-    // ctx.fillStyle= '#5e7436'
-    // ctx.setFontSize(30)
-    // ctx.setFillStyle('#5e7436')
+    ctx.setFontSize(that.data.size)
+    ctx.setFillStyle(that.data.color)
+    // ctx.fillText( that.data.content, 100, 100)
+
+    var text = that.data.content
+    var row = that.getList(text)
+    
+   
+    console.log("kankan", row)
+
+    
+    for (var b = 0; b < row.length; b++) {
+      ctx.fillText(row[b], 10, 30 + b * 30, 300);
+    }
+
     console.log(2444444)
     ctx.stroke()
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -181,8 +206,56 @@ Page({
           that.setData({
             shareImgSrc: tempFilePath,
             // maskHidden: false
-            canvasHidden:false
+            canvasHidden:false,
+            noshow: false
           });
+          console.log(1)
+          // wx.downloadFile({
+          //   url: tempFilePath,
+          //     success(res) {
+          //       wx.saveImageToPhotosAlbum({
+                  
+          //         filePath: res.tempFilePath,
+          //           success(res) {
+          //             console.log(2)
+          //             console.log(res)
+          //           }
+          //       })
+          //     }
+          // })
+
+          wx.downloadFile({
+            url: tempFilePath,　　　　　　　//需要下载的图片url
+            success: function (res) {　　　　　　　　　　　　//成功后的回调函数
+              wx.saveImageToPhotosAlbum({　　　　　　　　　//保存到本地
+                filePath: res.tempFilePath,
+                success(res) {
+                  wx.showToast({
+                    title: '保存成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                },
+                fail: function (err) {
+                  if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+                    wx.openSetting({
+                      success(settingdata) {
+                        console.log(settingdata)
+                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                          console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
+                        } else {
+                          console.log('获取权限失败，给出不给权限就无法正常使用的提示')
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          });
+
+
+
           wx.hideToast()
         },
         fail: function (res) {

@@ -1,6 +1,6 @@
 <!--pages/daochu/index.wxml-->
 <canvas canvas-id='share' style='width:375px;height:580px;'  hidden='{{canvasHidden}}'></canvas> 
-<view class="pyg_index" wx:if="{{backImg}}" style="background-image: url({{backImg}})">
+<view class="pyg_index" wx:if="{{backImg}}" style="background-image: url({{backImg}})" wx:if="{{noshow}}">
   <view class="content">
     <view style="color:{{color}};font-size:{{size}}px;" class="content_detail">
       <text>{{content}}</text>
@@ -27,5 +27,5 @@
 </view>
  <view class="footer">
     <text class="title_item" bindtap="goBack">返回</text>
-    <text class="title_item" bindtap="saveImageToPhotosAlbum">保存合影</text>
+    <text class="title_item" bindtap="saveImageToPhotosAlbum1">保存合影</text>
   </view>

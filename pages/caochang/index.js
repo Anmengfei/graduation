@@ -8,7 +8,7 @@ Page({
     showSelect: false,
     showSelectFengjing: false,
     opacity: 0,
-    imgList: ['https://zhongkeruitong.top/aiphoto/xiaofu1.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu2.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu3.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu4.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu5.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu6.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu7.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu8.jpg'],
+    imgList: ['https://zhongkeruitong.top/aiphoto/xiaofu1.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu2.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu3.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu4.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu5.png', 'https://zhongkeruitong.top/aiphoto/xiaofu6.png',  'https://zhongkeruitong.top/aiphoto/xiaofu8.png'],
 
     backImgList: ['https://zhongkeruitong.top/aiphoto/fengjing1.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing3.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing4.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing7.jpg'],
     // display: none,
