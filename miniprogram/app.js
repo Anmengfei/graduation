@@ -3,6 +3,11 @@
 App({
   //onLaunch,onShow: options(path,query,scene,shareTicket,referrerInfo(appId,extraData))
   onLaunch: function() {
+    wx.cloud.init({
+      env: 'jiancha-a6gjf',
+      traceUser: true,
+
+  })
     const _this = this
     wx.login({
       success: function (res) {

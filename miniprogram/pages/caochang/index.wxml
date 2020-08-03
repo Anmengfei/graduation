@@ -10,7 +10,7 @@
   </view>
   <view class="footer">
     <text class="title_item" bindtap="goBack">返回</text>
-    <text class="title_item" bindtap="showPopup">下一步</text>
+    <text class="title_item" bindtap="showPopup">添加寄语</text>
   </view>
   <view class="select_content" wx:if="{{showSelect}}">
     <view class="select_mask" style="opacity:{{opacity}};" bindtap="cancelSelect"></view>
