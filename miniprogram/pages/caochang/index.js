@@ -1,4 +1,5 @@
 // 0 引入 用来发送请求的 方法 一定要把路径补全
+import { request } from "../../request/index.js";
 Page({
   data: {
     touxiang: '',
@@ -87,6 +88,7 @@ Page({
       success: function(res) {
         console.log("云函数4")
         console.log(res);
+        that.yasuotupian(res.tempFilePaths[0])
         that.setData({
           showTouxiang: true,
           touxiang: res.tempFilePaths[0]
@@ -141,6 +143,11 @@ Page({
 
       }
     })
+  },
+  async yasuotupian(url) {
+    var url = `/apiPhoto/rest/picupload/filename=${url}`
+    const res = await request({url:url,method:"post"});
+    console.log(res)
   },
   chooseimage: function() {
     var that = this;
