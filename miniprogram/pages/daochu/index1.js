@@ -38,9 +38,6 @@ Page({
             success() {
               //这里是用户同意授权后的回调
               console.log("2222222")
-              that.setData({
-                canvasHidden: false
-              })
               that.saveImageToPhotosAlbum();
             },
             fail() {//这里是用户拒绝授权后的回调
@@ -53,9 +50,6 @@ Page({
           })
         } else {//用户已经授权过了
           console.log("4444444")
-          that.setData({
-            canvasHidden: false
-          })
           that.saveImageToPhotosAlbum();
         }
       }
@@ -81,7 +75,7 @@ Page({
         console.log(res)
        that.setData({
         //  shareImgSrc: 'https://zhongkeruitong.top/aiphoto/' + res.path
-        shareImgSrc:  res.path
+        backImg:  res.path
        });
       }
     })
@@ -91,7 +85,7 @@ Page({
         console.log("测试res2", res)
         that.setData({
           // shareImgPath: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg' + res.path
-          shareImgPath:  res.path
+          img:  res.path
         });
       }
     })
@@ -180,7 +174,7 @@ Page({
   // },
   //保存至相册
   saveImageToPhotosAlbum: function () {
-    //debugger
+    // debugger
     console.log('开始保存合影了？')
    var that = this;
    
@@ -192,19 +186,19 @@ Page({
     })
     //2. canvas绘制文字和图片
     const ctx = wx.createCanvasContext('share');
-    var bgImgPath = that.data.shareImgSrc;
+    var bgImgPath = that.data.backImg;
    
 
    
     console.log("bgImg", bgImgPath)
-    console.log("shareImg", that.data.shareImgPath)
+    console.log("Img", that.data.img)
  //这里很重要，主要就是布局
     console.log(222223333)
     ctx.drawImage(bgImgPath, 0, 0, 375, 580);
     //ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
     ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
-    ctx.drawImage(that.data.shareImgPath, 195, 250, 180, 240, 100);
+    ctx.drawImage(that.data.img, 195, 250, 180, 240, 100);
     ctx.setFontSize(that.data.size)
     ctx.setFillStyle(that.data.color)
     // ctx.fillText( that.data.content, 100, 100)
@@ -229,7 +223,7 @@ Page({
       duration: 1000
     });
     console.log(5555555555)
-    ctx.draw( false, ()  => {
+    ctx.draw( false, (()  => {
       // 3. canvas画布转成图片
       console.log(2456789)
       // that.setData({
@@ -267,10 +261,9 @@ Page({
           //       })
           //     }
           // })
-          var urlTest = tempFilePath.replace("wxfile", "https://zhongkeruitong.top")
-          console.log(urlTest)
+
           wx.downloadFile({
-            url: urlTest,　　　　　　　//需要下载的图片url
+            url: that.data.shareImgPath,　　　　　　　//需要下载的图片url
             success: function (res) {　　　　　　　　　　　　//成功后的回调函数
               console.log("下载1")
               console.log(res)
@@ -300,9 +293,6 @@ Page({
                   }
                 }
               })
-            },
-            fail: function(res) {
-              console.log("下载失败", res)
             }
           });
           console.log("下载4")
@@ -317,7 +307,7 @@ Page({
         
       })
       console.log('zhuanhaunle')
-    });
+    })());
   },
   /**
    * 生命周期函数--监听页面显示 
