@@ -5,7 +5,7 @@
   </view>
   <view class="biaoti">
     <text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>
-    <image style="width: 80px;height:80px;" class="touxiang"  src="{{touxiang}}" wx:if="{{showTouxiang}}" />
+    <image style="width: 60px;height:60px;border:0;" class="touxiang"  src="{{touxiang}}" wx:if="{{showTouxiang}}" />
     <image class="xiaofu"  src="{{img}}" />
   </view>
   <view class="footer">

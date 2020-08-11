@@ -1,5 +1,5 @@
 <!--pages/daochu/index.wxml-->
-<canvas canvas-id='share' style='width:375px;height:480px;'  hidden='{{canvasHidden}}'></canvas> 
+<canvas canvas-id='share' style='width:375px;height:600px;background-color: rgb(238, 234, 234);'  hidden='{{canvasHidden}}'></canvas> 
 <view class="pyg_index" wx:if="{{backImg}}" style="background-image: url({{backImg}})" wx:if="{{noshow}}">
   <view class="content">
     <view style="color:{{color}};font-size:{{size}}px;" class="content_detail">
@@ -21,7 +21,7 @@
   
   <view class="biaoti">
 <!--<text class="iconfont icon-jiahao jiahao" bindtap="chooseimage" wx:if="{{!showTouxiang}}"></text>-->
-    <image style="width: 80px;height:80px;" class="touxiang" wx:if="{{touxiang}}" src="{{touxiang}}"/>
+    <image style="width: 60px;height:60px;" class="touxiang" wx:if="{{touxiang}}" src="{{touxiang}}"/>
     <image class="xiaofu" wx:if="{{img}}" src="{{img}}" />
   </view>
 </view>
