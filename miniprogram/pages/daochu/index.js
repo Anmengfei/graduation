@@ -10,7 +10,7 @@ Page({
     backImg: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg',
     touxiang: '',
     img: 'https://zhongkeruitong.top/aiphoto/xiaofu1.jpg',
-    
+    logo: '../../icons/logo.png',
     wxappName: '页面生成图片',    //小程序名称
     shareImgPath: '',
     screenWidth: '',       //设备屏幕宽度
@@ -143,13 +143,13 @@ Page({
     while (i < str.length) {
       var str1 = "";
 
-      for (var j = i; j < i + 20; j++) {
+      for (var j = i; j < i + 17; j++) {
         if (j < str.length) {
           str1 = str1 + str[j];
         }
       }
       list.push(str1);
-      i = i + 20;
+      i = i + 17;
     }
     console.log(list);
     return list
@@ -193,6 +193,10 @@ Page({
     //2. canvas绘制文字和图片
     const ctx = wx.createCanvasContext('share');
     var bgImgPath = that.data.shareImgSrc;
+
+
+
+    
    
 
    
@@ -200,11 +204,15 @@ Page({
     console.log("shareImg", that.data.shareImgPath)
  //这里很重要，主要就是布局
     console.log(222223333)
-    ctx.drawImage(bgImgPath, 0, 0, 375, 580);
+
+    ctx.drawImage(bgImgPath, 0, 0, 375, 480);
     //ctx.drawImage(that.data.shareImgPath, 50, 450, 284, 80);
     // ctx.drawImage(that.data.backImg, 146, 100, 150, 100);
-    ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
-    ctx.drawImage(that.data.shareImgPath, 195, 250, 180, 240, 100);
+    
+    
+    // ctx.drawImage(that.data.touxiang, 246, 220, 80, 80, 80, 80);
+    ctx.drawImage(that.data.shareImgPath, 195, 190, 180, 240, 100);
+    ctx.drawImage(that.data.logo, 255, 480, 80, 80, 80, 80);
     ctx.setFontSize(that.data.size)
     ctx.setFillStyle(that.data.color)
     // ctx.fillText( that.data.content, 100, 100)
@@ -217,8 +225,18 @@ Page({
 
     
     for (var b = 0; b < row.length; b++) {
-      ctx.fillText(row[b], 10, 30 + b * 30, 300);
+      ctx.fillText(row[b], 10, 500 + b * 20, 300);
     }
+    
+    ctx.setFontSize(11)
+    ctx.setFillStyle("grey")
+    ctx.fillText("扫码生成", 330, 500, 100);
+    ctx.fillText("你的专属", 330, 520, 100);
+    ctx.fillText("记忆", 330, 540, 100);
+    ctx.arc(290, 210, 30, 0, Math.PI * 2, false);
+    ctx.clip();
+    ctx.drawImage(that.data.touxiang, 263,182, 55, 55);
+    ctx.restore()
 
     console.log(2444444)
     ctx.stroke()

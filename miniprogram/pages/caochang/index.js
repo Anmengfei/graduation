@@ -11,7 +11,7 @@ Page({
     opacity: 0,
     imgList: ['https://zhongkeruitong.top/aiphoto/xiaofu1.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu2.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu3.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu4.jpg', 'https://zhongkeruitong.top/aiphoto/xiaofu5.png', 'https://zhongkeruitong.top/aiphoto/xiaofu6.png',  'https://zhongkeruitong.top/aiphoto/xiaofu8.png'],
 
-    backImgList: ['https://zhongkeruitong.top/aiphoto/fengjing1.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing3.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing4.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing7.jpg'],
+    backImgList: ['https://zhongkeruitong.top/aiphoto/fengjing1.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing3.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing4.jpg', 'https://zhongkeruitong.top/aiphoto/fengjing7.jpg', "https://zhongkeruitong.top/aiphoto/1.jpg","https://zhongkeruitong.top/aiphoto/2.jpg","https://zhongkeruitong.top/aiphoto/3.jpg","https://zhongkeruitong.top/aiphoto/4.jpg","https://zhongkeruitong.top/aiphoto/5.jpg","https://zhongkeruitong.top/aiphoto/6.jpg","https://zhongkeruitong.top/aiphoto/7.jpg","https://zhongkeruitong.top/aiphoto/8.jpg","https://zhongkeruitong.top/aiphoto/9.jpg"],
     // display: none,
     dialogShow: false,
     showOneButtonDialog: false,
@@ -30,125 +30,126 @@ Page({
     
       
   },
-  // chooseWxImage: function(type) {
-  //   var that = this;
-  //   wx.chooseImage({
-  //     sizeType: ['original', 'compressed'],
-  //     sourceType: [type],
-  //     success: function(res) {
-  //       console.log(res);
-  //       that.setData({
-  //    // tempFilePath可以作为img标签的src属性显示图片
-  //         showTouxiang: true,
-  //         touxiang: res.tempFilePaths[0],
-  //       })
-  //     }
-  //   })
-  // },
+  
+
+  
+  
 
   chooseWxImage: function(type) {
     var that = this;
     console.log("云函数3")
 
-    // wx.chooseImage({
-    //   count: 1, // 默认9
-    //   sizeType: ['original', 'compressed'], //  可以指定是原图还是压缩图，默认二者都有
-    //   sourceType: ['album', 'camera'], //  可以指定来源是相册还是相机，默认二者都有
-    //   success: function(e) { // 选择图片成功
-    //     console.log("本次选择图片" + JSON.stringify(e.tempFilePaths));
-    //     var baseImg = "";
-    //     wx.getFileSystemManager().readFile({
-    //       filePath: e.tempFilePaths[0], // 选择图片返回的相对路径
-    //       encoding: 'base64', // 编码格式
-    //       success: res => { // 转码成功的回调
-    //         baseImg = 'data:image/png;base64,' + res.data;
-    //         console.log('data:image/png;base64,' + res.data);
-    //         // 后续的逻辑处理
-    //         that.setData({
-    //           showTouxiang: true,
-    //           touxiang: baseImg
-              
-    //         })
-  
-    //       }
-    //     })
-    //   },
-    //   fail: function(error) {
-    //     console.error("调用本地相册文件时出错")
-    //     console.warn(error)
-    //   },
-    //   complete: function() {
-  
-    //   }
-    // })
   
     wx.chooseImage({
-      sizeType: ['original'],
+      sizeType: ['compressed'],
       sourceType: [type],
       success: function(res) {
         console.log("云函数4")
         console.log(res);
-        that.yasuotupian(res.tempFilePaths[0])
+        // that.checkFace(res.tempFilePaths[0])
+        //  that.yasuotupian(res.tempFilePaths[0])
+        // that.setData({
+        //   showTouxiang: true,
+        //   touxiang: res.tempFilePaths[0]
+          
+        // })
+        wx.showToast({
+          title: '正在处理图片，请稍后...',
+          icon: 'none'
+        })
+        
+
+
+
+wx.cloud.uploadFile({
+  cloudPath: 'my-image' + res.tempFilePaths[0].match(/\.[^.]+?$/)[0],
+  filePath: res.tempFilePaths[0],
+  success: res1 => {
+    wx.showToast({
+      icon: 'none',
+      title: '正在加载图片...',
+    })
+    console.log('上传成功：', res1)
+    
+    wx.cloud.callFunction({
+      name: 'check_img',
+      data: {
+        contentType: 'image/jpg',
+        fileID: res1.fileID
+      }
+    }).then(res2 => {
+      console.log("检测结果", res2.result);
+      if (res2.result.errCode == '87014') {
+        wx.showToast({
+          icon: 'none',
+          title: '图片含有敏感信息，换张图吧~',
+        })
+      } else {
         that.setData({
           showTouxiang: true,
           touxiang: res.tempFilePaths[0]
           
         })
         
+        
+      }
+    })
+  },
+  fail: e => {
+    console.error('上传失败：', e)
+  }
+ })
 
-        wx.getFileSystemManager().readFile({
-          filePath: res.tempFilePaths[0],
-          encoding: 'base64', // 编码格式
-          success: buffer => {
-            console.log("云函数5")
-            console.log(buffer.data)
-            wx.cloud.callFunction({
-              name: 'check_img',
-              data: {
-                value: buffer.data
-              }
-            }).then(
+        
+
+        // wx.getFileSystemManager().readFile({
+        //   filePath: res.tempFilePaths[0],
+        //   //encoding: 'base64', // 编码格式
+        //   success: buffer => {
+        //     console.log("云函数5")
+        //     //console.log(buffer.data)
+        //     wx.cloud.callFunction({
+        //       name: 'check_img',
+        //       data: {
+        //         value: buffer.data
+        //       }
+        //     }).then(
               
-              imgRes => {
-                console.log('imgRes:',imgRes)
-                if (imgRes.result.errCode == '87014') {
-                  wx.showToast({
-                    title: '图片含有违法违规内容',
-                    icon: 'none'
-                  })
-                  return
-                } else {
-                  //图片正常
+        //       imgRes => {
+        //         console.log('imgRes:',imgRes)
+        //         if (imgRes.result.errCode == '87014') {
+        //           wx.showToast({
+        //             title: '图片含有违法违规内容',
+        //             icon: 'none'
+        //           })
+        //           return
+        //         } else {
+        //           //图片正常
 
-                 console.log("测试111")
-                  that.setData({
-                    showTouxiang: true,
-                    touxiang: res.tempFilePaths[0]
+        //          console.log("测试111")
+        //           that.setData({
+        //             showTouxiang: true,
+        //             touxiang: res.tempFilePaths[0]
                     
-                  })
-                  console.log("测试222")
-                  
+        //           })
+        //           console.log("测试222")
+        //         }
 
-
-                }
-
-              }
-            )
-          },
-          fail: err => {
-            console.log("云函数6")
-            console.log(err)
-          }
-        })
+        //       }
+        //     )
+        //   },
+        //   fail: err => {
+        //     console.log("云函数6")
+        //     console.log(err)
+        //   }
+        // })
 
       }
     })
   },
-  async yasuotupian(url) {
-    var url = `/apiPhoto/rest/picupload/filename=${url}`
-    const res = await request({url:url,method:"post"});
-    console.log(res)
-  },
+ 
+
+ 
   chooseimage: function() {
     var that = this;
     wx.showActionSheet({
@@ -167,65 +168,7 @@ Page({
  
   },
   
-  // ChooseImage() {
-  //   wx.chooseImage({
-  //     count: 1, 
-  //     sizeType: ['original', 'compressed'], 
-  //     sourceType: ['album'], 
-  //     success: (res) => {
-  //       if (res.tempFiles[0] && res.tempFiles[0].size > 1024 * 1024) {
-  //         wx.showToast({
-  //           title: '图片不能大于1M',
-  //           icon: 'none'
-  //         })
-  //         return;
-  //       }
-  //       //校验图片
 
-  //       wx.getFileSystemManager().readFile({
-  //         filePath: res.tempFilePaths[0],
-  //         success: buffer => {
-  //           console.log(buffer.data)
-  //           wx.cloud.callFunction({
-  //             name: 'checkImg',
-  //             data: {
-  //               value: buffer.data
-  //             }
-  //           }).then(
-  //             imgRes => {
-  //               if (imgRes.result.errCode == '87014') {
-  //                 wx.showToast({
-  //                   title: '图片含有违法违规内容',
-  //                   icon: 'none'
-  //                 })
-  //                 return
-  //               } else {
-  //                 //图片正常
-
-  //                 if (this.data.imgList.length != 0) {
-  //                   this.setData({
-  //                     imgList: this.data.imgList.concat(res.tempFilePaths)
-  //                   })
-  //                 } else {
-  //                   this.setData({
-  //                     imgList: res.tempFilePaths
-  //                   })
-  //                 }
-
-
-  //               }
-
-  //             }
-  //           )
-  //         },
-  //         fail: err => {
-  //           console.log(err)
-  //         }
-  //       })
-
-  //     }
-  //   });
-  // },
   goBack: function(){
     wx.navigateBack({
         delta: 1
