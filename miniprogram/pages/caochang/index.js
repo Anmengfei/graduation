@@ -17,18 +17,35 @@ Page({
     showOneButtonDialog: false,
     buttons: [{text: '取消'}, {text: '确定'}],
     oneButton: [{text: '确定'}],
-    content: ''
+    content: '',
+    realLink: undefined,
+    imageLink: undefined,
+    openid: undefined
   },
   
 
   onShow: function(options) {
-   
-      
+    var openid = wx.getStorageSync("openId")
+    this.setData({
+      openid: openid
+    })
   },
   // 页面开始加载 就会触发
   onLoad: function (options) {
     
       
+  },
+  async imageDeal(url) {
+    var urlA = `/taq/imageDeal?url=${url}&openid=${this.data.openid}`
+    const res = await request({url: urlA, method:"post"})
+    console.log("获取处理过后的照片")
+    console.log(res)
+    console.log(res.data.proUrl)
+    this.setData({
+      showTouxiang: true,
+      touxiang: res.data.proUrl
+      
+    })
   },
   
 
@@ -44,8 +61,11 @@ Page({
       sizeType: ['compressed'],
       sourceType: [type],
       success: function(res) {
+       //let base64 = 'data:image/jpg;base64,' + wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], 'base64')
+        
         console.log("云函数4")
         console.log(res);
+        //console.log(base64)
         // that.checkFace(res.tempFilePaths[0])
         //  that.yasuotupian(res.tempFilePaths[0])
         // that.setData({
@@ -70,6 +90,17 @@ wx.cloud.uploadFile({
       title: '正在加载图片...',
     })
     console.log('上传成功：', res1)
+    //test
+    wx.cloud.getTempFileURL({
+      fileList: [res1.fileID],
+      success: resx => {
+        console.log("获取真是链接",resx.fileList[0].tempFileURL)
+        that.setData({
+          realLink:resx.fileList[0].tempFileURL
+        })
+       
+      }
+    })
     
     wx.cloud.callFunction({
       name: 'check_img',
@@ -85,11 +116,8 @@ wx.cloud.uploadFile({
           title: '图片含有敏感信息，换张图吧~',
         })
       } else {
-        that.setData({
-          showTouxiang: true,
-          touxiang: res.tempFilePaths[0]
-          
-        })
+        
+        that.imageDeal(that.data.realLink)
         
         
       }
