@@ -21,7 +21,8 @@ Page({
     // size: 'medium',
     size: 14,
     noshow: true,
-    openSettingBtnHidden: true
+    openSettingBtnHidden: true,
+    touxiangPath: ''
   },
 
 
@@ -74,6 +75,7 @@ Page({
       img: options.img,
       content: options.content
     })
+    console.log("头像链接:",that.data.touxiang)
     wx.getImageInfo({
       src: this.data.backImg,
       success: function (res) {
@@ -92,6 +94,16 @@ Page({
         that.setData({
           // shareImgPath: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg' + res.path
           shareImgPath:  res.path
+        });
+      }
+    })
+    wx.getImageInfo({
+      src: this.data.touxiang,
+      success: function (res) {
+        console.log("测试res2", res)
+        that.setData({
+          // shareImgPath: 'https://zhongkeruitong.top/aiphoto/fengjing1.jpg' + res.path
+          touxiangPath:  res.path
         });
       }
     })
@@ -202,6 +214,7 @@ Page({
    
     console.log("bgImg", bgImgPath)
     console.log("shareImg", that.data.shareImgPath)
+    console.log("touxiang", that.data.touxiang)
  //这里很重要，主要就是布局
     console.log(222223333)
 
@@ -235,7 +248,7 @@ Page({
     ctx.fillText("记忆", 330, 540, 100);
     ctx.arc(290, 210, 30, 0, Math.PI * 2, false);
     ctx.clip();
-    ctx.drawImage(that.data.touxiang, 263,182, 55, 55);
+    ctx.drawImage(that.data.touxiangPath, 263,182, 55, 55);
     ctx.restore()
 
     console.log(2444444)
